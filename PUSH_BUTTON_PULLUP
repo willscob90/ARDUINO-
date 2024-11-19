@@ -1,24 +1,40 @@
-//CODIGO PARA ENCENDER UN LED CON UN PULSADOR EN PULLUP
-
-unsigned int pinButton = 8;
-unsigned int pinLed = 13;
+unsigned int pinButton = 11;
+unsigned int pinButton2 = 12;
+unsigned int pinLed = 3;
+unsigned int pinLed2 =4;
 bool decisor = true;
+bool decisor2 = true;
 
 void setup() {
-Serial.begin(9600);
+Serial.begin(9600);  
 pinMode(pinButton,INPUT_PULLUP);
 pinMode(pinLed,OUTPUT);
+pinMode(pinButton2,INPUT_PULLUP);
+pinMode(pinLed2,OUTPUT);
 }
 
 void loop() {
   
+  /*Lectura pulsador 1*/
 if (digitalRead(pinButton) == LOW && decisor == true){
-    decisor = false;
-    digitalWrite(pinLed,!digitalRead(pinLed));
+  decisor = false;
+  digitalWrite(pinLed,!digitalRead(pinLed));
 }
 if (digitalRead(pinButton) == HIGH && decisor == false){
-    decisor = true;
+  decisor = true;
 }
-Serial.println(digitalRead(pinButton));
-delay(9600);
+  
+  
+  /*Lectura pulsador 2*/
+ 
+if (digitalRead(pinButton2) == LOW && decisor2 == true){
+  decisor2 = false;
+  digitalWrite(pinLed2,!digitalRead(pinLed2));
+}
+if (digitalRead(pinButton2) == HIGH && decisor2 == false){
+  decisor2 = true;
+}
+
+Serial.println(digitalRead(pinButton)); 
+delay(30);
 }
